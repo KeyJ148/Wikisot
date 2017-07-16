@@ -1,0 +1,58 @@
+/*Верхняя часть сайта*/
+
+#header {
+    height: 130px;
+    padding: 20px;
+}
+
+#error {
+    height: 30px;
+    margin-right: -0.5px;
+    padding-left: 15px;
+    background-color: #F00000;
+    color: white;
+}
+
+/*Логотип*/
+
+#logo {
+    width: 260px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24pt;
+}
+
+#logo a {
+    text-decoration: none;
+}
+
+/*Меню*/
+
+#menu {
+    position: relative;
+    top: -93px;
+    float: right;
+}
+
+#menu a {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+#menu li {
+    display: inline;
+    padding: 10px;
+    margin: 0 8px 0 8px;
+}
+
+#menu li.active {
+    background: #F2EBDE;
+    border: solid 1px #BFB5A4;
+    box-shadow: inset 0px 0px 0px 1px #fff;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.9);
+}
+
+#menu li.active a {
+    color: #403B31;
+}

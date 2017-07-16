@@ -1,0 +1,29 @@
+/*Подвал сайта*/
+
+#page-bottom {
+    padding: 40px 0px 0 40px;
+    background: #F2EBDE;
+    border-top: solid 1px #BFB5A4;
+    box-shadow: inset 0px 0px 0px 1px #fff;
+}
+
+#page-bottom-content {
+    margin: 0 0 0 285px;
+    padding-right: 30px;
+}
+
+/*Боковая панель подавала*/
+
+#page-bottom-sidebar {
+    float: left;
+    width: 260px;
+}
+
+/*Под подвалом сайта*/
+
+#footer {
+    padding: 10px 0 50px 0;
+    text-align: center;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.7);
+    color: #587477;
+}

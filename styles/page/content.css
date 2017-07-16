@@ -1,0 +1,26 @@
+/*Основная часть страницы*/
+
+#content {
+    padding: 0px 30px 0px 50px;
+    margin-left: 260px;
+}
+
+#page {
+    margin-top: 35px;
+    padding-left: 20px;
+}
+
+/*Боковая панель*/
+
+#sidebar {
+    float: left;
+    width: 260px;
+}
+
+#navigation {
+    background: #EEF5F6;
+    border: solid 1px #D6E0E2;
+    padding: 20px;
+    text-shadow: 1px 1px 0px rgba(255,255,255,1);
+    box-shadow: inset 0px 0px 0px 1px #fff;
+}

@@ -40,8 +40,8 @@ $page = mysqli_fetch_assoc($result);
     <div class="box">
             <ul>
                 <input form="save" type="hidden" name="path" value="<?php echo $path?>">
-                <input form="save" class='text' type="text" name="name" value="<?php echo $page["name"] ?>">
-                <select form="save" name="category">
+                <input form="save" class="text" type="text" name="name" value="<?php echo $page["name"] ?>">
+                <select form="save" class="button" name="category">
                     <?php
                     if ($page["category"] == 1 && $page["category_id"] == -1) echo '<option>Без категории</option>';
 

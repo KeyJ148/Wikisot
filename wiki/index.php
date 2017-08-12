@@ -37,6 +37,7 @@ $title = "Wiki";
                 $result = mysqli_query($db, "SELECT * FROM roles WHERE (id='$role_id')");
                 $result = mysqli_fetch_assoc($result);
                 if ($result["change_pages"] == 1){
+                    include($_SERVER["DOCUMENT_ROOT"] . "/wiki/sidebar/button_create.php");
                     include($_SERVER["DOCUMENT_ROOT"] . "/wiki/sidebar/button_change.php");
                 }
             }

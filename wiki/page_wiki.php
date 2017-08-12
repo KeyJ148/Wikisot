@@ -10,7 +10,7 @@ $page = mysqli_fetch_assoc($result);
     $result = mysqli_query($db, "SELECT * FROM pages WHERE (category_id='$page[id]')");
     $count = mysqli_num_rows($result);
     ?>
-    <?php if ($page["category"] == 1 && $count != 0){?>
+    <?php if ($count != 0){?>
 
         <div class="box">
             <h2>Страницы в этой категории</h2>
@@ -27,9 +27,7 @@ $page = mysqli_fetch_assoc($result);
         </div>
     <?php }?>
     <div class="box">
-        <h2>
-            <?php echo $page["name"] ?>
-        </h2>
+        <h2><?php echo $page["name"] ?></h2>
         <p>
             <?php
             echo str_replace(chr(13), "<br>", $page["content"]);

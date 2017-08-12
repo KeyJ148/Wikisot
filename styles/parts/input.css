@@ -22,7 +22,6 @@ input.text {
     font: 11pt arial;
 }
 
-
 /*Выпадающий список*/
 
 select, option  {
@@ -47,8 +46,12 @@ input.button:active {
     background-color: #B6C0C2;
 }
 
-/*Кнопка для sidebar*/
+/*Для sidebar*/
 
 input.mini-button {
-    width:260px;
+    width: 260px;
+}
+
+input.mini-text {
+    width: 240px;
 }

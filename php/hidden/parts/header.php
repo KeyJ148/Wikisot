@@ -28,9 +28,7 @@ $menu[4]["name"] = "Профиль";
     }
 ?>
 <div id="header">
-    <div id="logo">
-        <h1><a href="/">Storm<br>of time</a></h1>
-    </div>
+
     <div id="menu">
         <ul>
             <?php
@@ -43,5 +41,8 @@ $menu[4]["name"] = "Профиль";
             ?>
         </ul>
         <br class="clearfix" />
+    </div>
+    <div id="logo">
+        <h1><a href="/">Storm<br>of time</a></h1>
     </div>
 </div>

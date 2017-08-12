@@ -44,5 +44,5 @@ if (mysqli_num_rows($result) == 0){
     $category_id = $result["id"];
 }
 
-mysqli_query($db, "INSERT INTO pages (name, category_id, category) values('$name', '$category_id', '1')");
+mysqli_query($db, "INSERT INTO pages (content, name, category_id) values('', '$name', '$category_id')");
 header("Location: " . $_REDIRECT . "?p=" . $name);

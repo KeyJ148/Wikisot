@@ -52,7 +52,7 @@ $title = "Wiki";
             $result = mysqli_fetch_assoc($result);
 
             echo 'Последние изменение:<br>';
-            echo $page["last_change"] . ", " . $result["login"];
+            echo $page["last_change"] . ", " . $result["visible_login"];
         }
         ?>
         </div>

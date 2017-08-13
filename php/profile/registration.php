@@ -6,13 +6,13 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/php/profile/sault.php");
 
 $_REDIRECT = "/profile/";
 
-$login = $_POST["login"];
+$visible_login = $_POST["login"];
 $pass = $_POST["pass"];
-if (!$login || !$pass){
+if (!$visible_login || !$pass){
     header("Location: " . $_REDIRECT . "?error=" . Errors::$_ERROR_FIELD_EMPTY);
     exit;
 }
-if (strlen($login) < 3){
+if (strlen($visible_login) < 3){
     header("Location: " . $_REDIRECT . "?error=" . Errors::$_ERROR_LOGIN_SMALL);
     exit;
 }
@@ -21,7 +21,7 @@ if (strlen($pass) < 6){
     exit;
 }
 
-$login = mb_convert_case($login, MB_CASE_LOWER, "UTF-8");
+$login = mb_convert_case($visible_login, MB_CASE_LOWER, "UTF-8");
 $sault = get_sault();
 $hash = hash("SHA256", $pass . $sault);
 
@@ -32,6 +32,6 @@ if (mysqli_num_rows($result) != 0){
     exit;
 }
 
-mysqli_query($db, "INSERT INTO users (login, password, sault) values('$login', '$hash', '$sault')");
+mysqli_query($db, "INSERT INTO users (login, visible_login, password, sault, role_id) values('$login', '$visible_login','$hash', '$sault', '0')");
 
 header("Location: " . $_REDIRECT);

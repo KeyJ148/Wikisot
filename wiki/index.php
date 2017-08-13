@@ -5,11 +5,15 @@ include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
 $db = connect_db();
 
 $_MAIN_PAGE = true;
+$page = null;
 if (isset($_GET["p"])){
     $path = $_GET["p"];
     $result = mysqli_query($db, "SELECT * FROM pages WHERE (name='$path')");
     $count = mysqli_num_rows($result);
-    if ($count != 0) $_MAIN_PAGE = false;
+    if ($count != 0){
+        $_MAIN_PAGE = false;
+        $page = mysqli_fetch_assoc($result);
+    }
 }
 $include_css[0] = "/styles/parts/input.css";
 $title = "Wiki";
@@ -41,6 +45,14 @@ $title = "Wiki";
                     include($_SERVER["DOCUMENT_ROOT"] . "/wiki/sidebar/button_change.php");
                 }
             }
+
+
+            $last_change_user_id = $page["last_change_user_id"];
+            $result = mysqli_query($db, "SELECT * FROM users WHERE (id='$last_change_user_id')");
+            $result = mysqli_fetch_assoc($result);
+
+            echo 'Последние изменение:<br>';
+            echo $page["last_change"] . ", " . $result["login"];
         }
         ?>
         </div>

@@ -1,7 +1,7 @@
 <div class="box">
     <h2>Создать страницу</h2>
     <p>
-        <form action="/php/wiki/create_category.php" method="POST">
+        <form action="/php/wiki/create_page.php" method="POST">
             <ul>
                 <li><span class='form'>Название: </span><input class='text' type="text" name="name"></li>
                 <li>

@@ -1,5 +1,6 @@
 <?php
-session_start();
+include_once($_SERVER["DOCUMENT_ROOT"] . "/php/hidden/parts/auth.php");
+
 $_REDIRECT = "/profile/";
 
 $expire = time()-60*60*24*365*10;

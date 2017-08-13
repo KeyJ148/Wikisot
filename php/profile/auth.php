@@ -1,6 +1,6 @@
 <?php
 if(session_id() == '') session_start();
-include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
+include_once($_SERVER["DOCUMENT_ROOT"] . "/php/hidden/connect_db.php");
 
 if (isset($_COOKIE["token"]) && isset($_COOKIE["login"])) {
     $token = $_COOKIE["token"];

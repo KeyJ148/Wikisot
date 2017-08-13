@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/auth.php");
+include_once($_SERVER["DOCUMENT_ROOT"] . "/php/hidden/parts/auth.php");
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
 $db = connect_db();

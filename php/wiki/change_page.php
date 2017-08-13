@@ -24,6 +24,10 @@ $db = connect_db();
 $login = $_SESSION["login"];
 $result = mysqli_query($db, "SELECT * FROM users WHERE (login='$login')");
 $result = mysqli_fetch_assoc($result);
+
+$last_change = date("d.m.y G:i");
+$last_change_user_id = $result["id"];
+
 $role_id = $result["role_id"];
 $result = mysqli_query($db, "SELECT * FROM roles WHERE (id='$role_id')");
 $result = mysqli_fetch_assoc($result);
@@ -52,5 +56,20 @@ if (mysqli_num_rows($result) != 0) {
 }else {
     $category_id = -1;
 }
-mysqli_query($db, "UPDATE pages SET content='$content', name='$name', category_id='$category_id' WHERE (name='$path')");
+
+mysqli_query($db, "UPDATE pages SET 
+                   content='$content', 
+                   name='$name', 
+                   category_id='$category_id', 
+                   last_change='$last_change', 
+                   last_change_user_id='$last_change_user_id' 
+                   WHERE (name='$path')");
+
+/*
+mysqli_query($db, "UPDATE pages SET content='$content',
+                                    name='$name',
+                                    category_id='$category_id',
+                                    last_change='',
+                                    last_change_user_id=''
+                                     WHERE (name='$path')");*/
 header("Location: " . $_REDIRECT);

@@ -1,4 +1,4 @@
-<?php include_once($_SERVER["DOCUMENT_ROOT"] . "/php/hidden/parts/auth.php");?>
+<?php include_once($_SERVER["DOCUMENT_ROOT"] . "/php/profile/auth.php");?>
 <!DOCTYPE html>
 <head>
     <?php include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/head.php");?>

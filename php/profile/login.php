@@ -1,7 +1,8 @@
 <?php
 session_start();
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/profile/sault.php");
 
 $_REDIRECT = "/profile/";
 
@@ -28,5 +29,14 @@ if (strcmp($hash, $result["password"]) != 0){
     exit;
 }
 
+$token = get_sault(64);
+$expire = time()+60*60*24*365*10;
+$path = "/";
+
+setcookie("token", $token, $expire, $path);
+setcookie("login", $login, $expire, $path);
 $_SESSION["login"] = $result["login"];
+
+mysqli_query($db, "UPDATE users SET token='$token' WHERE (login='$login')");
+
 header("Location: " . $_REDIRECT);

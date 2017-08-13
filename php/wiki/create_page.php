@@ -1,7 +1,7 @@
 <?php
 session_start();
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
 
 $_REDIRECT = "/wiki/";
 

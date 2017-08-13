@@ -1,7 +1,8 @@
 <?php
 session_start();
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/connect_db.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/profile/sault.php");
 
 $_REDIRECT = "/profile/";
 
@@ -33,15 +34,4 @@ if (mysqli_num_rows($result) != 0){
 
 mysqli_query($db, "INSERT INTO users (login, password, sault) values('$login', '$hash', '$sault')");
 
-$_SESSION["login"] = $login;
 header("Location: " . $_REDIRECT);
-
-function get_sault($length = 32){
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    $numChars = strlen($chars);
-    $string = "";
-    for ($i = 0; $i < $length; $i++) {
-        $string .= substr($chars, rand(1, $numChars) - 1, 1);
-    }
-    return $string;
-}

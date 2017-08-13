@@ -19,7 +19,7 @@ $menu[4]["name"] = "Профиль";
 
 <?php
     if (isset($_GET["error"])) {
-       include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
+       include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
 ?>
         <div id="error">
             <?php echo ("Внимание: " . Errors::get_error_text($_GET["error"])  . "!") ?>

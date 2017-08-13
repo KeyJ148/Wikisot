@@ -10,4 +10,4 @@ $content[1]["text"] = "На данном сайте имеется раздел 
 $content[2]["name"] = "Статистика";
 $content[2]["text"] = "После создания аккаунта в разделе \"Профиль\" у вас появится возможность сохранять свою статистику игры на сайте и участвовать в рейтинге топ-игроков.";
 
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/template.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/template.php");

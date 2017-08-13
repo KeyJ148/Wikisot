@@ -19,4 +19,4 @@ $content[1]["text"] = "
 <a href=\"https://github.com/KeyJ148/RPG\">Github</a>
 ";
 
-include($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/template.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/template.php");

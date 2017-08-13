@@ -41,8 +41,7 @@ if ($count != 0 && $result["name"] != $path){
 }
 
 $result = mysqli_query($db, "SELECT * FROM pages WHERE (name='$category')");
-$result_2 = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM pages WHERE (name='$path')"));
-if (mysqli_num_rows($result) == 0 && $result_2["category"] == 0){
+if (mysqli_num_rows($result) == 0 && $category != "Без категории"){
     header("Location: " . $_REDIRECT . "&edit=1&error=" . Errors::$_ERROR_CATEGORY_NOT_EXIST);
     exit;
 }

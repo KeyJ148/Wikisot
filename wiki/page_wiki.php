@@ -41,15 +41,15 @@ $page = mysqli_fetch_assoc($result);
                 <input form="save" class="text" type="text" name="name" value="<?php echo $page["name"] ?>">
                 <select form="save" class="button" name="category">
                     <?php
-                    if ($page["category"] == 1 && $page["category_id"] == -1) echo '<option>Без категории</option>';
+                    if ($page["category_id"] == -1) echo '<option>Без категории</option>';
 
-                    $result = mysqli_query($db, "SELECT * FROM pages WHERE (category='1')");
+                    $result = mysqli_query($db, "SELECT * FROM pages");
                     $count = mysqli_num_rows($result);
                     $now_category_id = $page["category_id"];
                     $now_category_name = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM pages WHERE (id='$now_category_id')"));
                     $now_category_name = $now_category_name["name"];
 
-                    if ($page["category"] == 1 && $page["category_id"] != -1) echo '<option>' . $now_category_name . '</option>';
+                    if ($page["category_id"] != -1) echo '<option>' . $now_category_name . '</option>';
                     for ($i = 0; $i < $count ; $i++){
                         $row = mysqli_fetch_assoc($result);
                         if ($row["name"] != $now_category_name){
@@ -57,7 +57,7 @@ $page = mysqli_fetch_assoc($result);
                         }
                     }
 
-                    if ($page["category"] == 1 && $page["category_id"] != -1) echo '<option>Без категории</option>';
+                    if ($page["category_id"] != -1) echo '<option>Без категории</option>';
                     ?>
                 </select>
                 <br><br>

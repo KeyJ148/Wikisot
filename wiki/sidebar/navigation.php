@@ -13,7 +13,7 @@
                 } else {
                     echo '<li class="sidebar">';
                 }
-                echo '<a href="/wiki/?p='.$row["name"].'">';
+                echo '<a href="/wiki/?id='.$row["id"].'">';
                 echo $row["name"];
                 echo '</a></li>';
             }

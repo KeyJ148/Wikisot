@@ -6,9 +6,9 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
 $_REDIRECT = "/wiki/";
 
 $name = $_POST["name"];
-$category = $_POST["category"];
+$category_id = $_POST["category"];
 
-if (!$name || !$category){
+if (!$name || !$category_id){
     header("Location: " . $_REDIRECT . "?error=" . Errors::$_ERROR_FIELD_EMPTY);
     exit;
 }
@@ -40,14 +40,10 @@ if (mysqli_num_rows($result) != 0 || $name == "Без категории"){
     exit;
 }
 
-$result = mysqli_query($db, "SELECT * FROM pages WHERE (name='$category')");
-if (mysqli_num_rows($result) == 0){
-    $category_id = -1;
-} else {
-    $result = mysqli_fetch_assoc($result);
-    $category_id = $result["id"];
-}
-
 mysqli_query($db, "INSERT INTO pages (content, name, category_id, last_change, last_change_user_id) 
                                values('', '$name', '$category_id', '$last_change', '$last_change_user_id')");
-header("Location: " . $_REDIRECT . "?p=" . $name);
+
+$result = mysqli_query($db, "SELECT * FROM pages WHERE (name='$name')");
+$result = mysqli_fetch_assoc($result);
+
+header("Location: " . $_REDIRECT . "?id=" . $result["id"]);

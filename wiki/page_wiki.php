@@ -1,7 +1,7 @@
 <?php
-$path = $_GET["p"];
+$page_id = $_GET["id"];
 $edit = isset($_GET["edit"]);
-$result = mysqli_query($db, "SELECT * FROM pages WHERE (name='$path')");
+$result = mysqli_query($db, "SELECT * FROM pages WHERE (id='$page_id')");
 $page = mysqli_fetch_assoc($result);
 ?>
 
@@ -18,7 +18,7 @@ $page = mysqli_fetch_assoc($result);
                 <?php
                 for ($i = 0; $i < $count ; $i++){
                     $row = mysqli_fetch_assoc($result);
-                    echo '<li><a href="/wiki/?p='.$row["name"].'">';
+                    echo '<li><a href="/wiki/?id='.$row["id"].'">';
                     echo $row["name"];
                     echo '</a></li>';
                 }
@@ -37,7 +37,7 @@ $page = mysqli_fetch_assoc($result);
 <?php } else {?>
     <div class="box">
             <ul>
-                <input form="save" type="hidden" name="path" value="<?php echo $path?>">
+                <input form="save" type="hidden" name="id" value="<?php echo $page_id?>">
                 <input form="save" class="text" type="text" name="name" value="<?php echo $page["name"] ?>">
                 <select form="save" class="button" name="category">
                     <?php

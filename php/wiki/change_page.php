@@ -6,11 +6,11 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/errors.php");
 $_REDIRECT = "/wiki/";
 
 $name = $_POST["name"];
-$path = $_POST["path"];
+$page_id = $_POST["id"];
 $content = $_POST["content"];
 $category = $_POST["category"];
-$_REDIRECT = $_REDIRECT . "?p=" . $name;
-if (!$path || !$name || !$category){
+$_REDIRECT = $_REDIRECT . "?id=" . $page_id;
+if (!isset($page_id) || !$name || !$category){
     header("Location: " . $_REDIRECT . "&edit=1&error=" . Errors::$_ERROR_FIELD_EMPTY);
     exit;
 }
@@ -39,7 +39,7 @@ if ($result["change_pages"] == 0){
 $result = mysqli_query($db, "SELECT * FROM pages WHERE (name='$name')");
 $count = mysqli_num_rows($result);
 $result = mysqli_fetch_assoc($result);
-if ($count != 0 && $result["name"] != $path){
+if ($count != 0 && $result["id"] != $page_id){
     header("Location: " . $_REDIRECT . "&edit=1&error=" . Errors::$_ERROR_NAME_BUSY);
     exit;
 }
@@ -63,13 +63,6 @@ mysqli_query($db, "UPDATE pages SET
                    category_id='$category_id', 
                    last_change='$last_change', 
                    last_change_user_id='$last_change_user_id' 
-                   WHERE (name='$path')");
+                   WHERE (id='$page_id')");
 
-/*
-mysqli_query($db, "UPDATE pages SET content='$content',
-                                    name='$name',
-                                    category_id='$category_id',
-                                    last_change='',
-                                    last_change_user_id=''
-                                     WHERE (name='$path')");*/
 header("Location: " . $_REDIRECT);

@@ -1,13 +1,6 @@
 <?php
-$content_description = "На данной странице отображена общая информация о сайте и игре.";
 
-$content[0]["name"] = "Storm of time";
-$content[0]["text"] = "Данный сайт посвещён игре Storm of time и бла-бла-бла...";
+//Корневая папка
+define('ROOT_FOLDER', $_SERVER['DOCUMENT_ROOT']);
 
-$content[1]["name"] = "Wiki";
-$content[1]["text"] = "На данном сайте имеется раздел Wiki в котором описана вся информация о игре Storm of time. Ну почти вся. Всё, что мы успели туда написать.";
-
-$content[2]["name"] = "Статистика";
-$content[2]["text"] = "После создания аккаунта в разделе \"Профиль\" у вас появится возможность сохранять свою статистику игры на сайте и участвовать в рейтинге топ-игроков.";
-
-include_once($_SERVER["DOCUMENT_ROOT"]."/php/hidden/parts/template.php");
+require_once ROOT_FOLDER.'/app/core/loader.php';

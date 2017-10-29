@@ -101,7 +101,7 @@ class M_Session extends Model {
             $person = new ORM_Person();
             $person->db_login = $login;
 
-            if ($person->load() && strnatcasecmp($person->db_token, $token) == 0) {
+            if ($person->load() && $person->db_token === $token) {
                 $_SESSION['login'] = $person->db_login;
             }
         }

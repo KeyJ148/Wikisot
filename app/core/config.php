@@ -48,10 +48,12 @@ define("ACTION_DEFAULT", ACTION_PREFIX . 'index');
  * Найстройка путей скриптов для форм
  */
 const FORMS_PATH = array(
-    'unlogin' => '/session/exit',
-    'login' => '/session/login',
-    'registration' => '/session/registration',
-    'page_create' => '/wiki/create',
-    'page_edit' => '/wiki/edit',
-    'page_save' => '/wiki/save'
+    'unlogin' => '/session/exit/',
+    'login' => '/session/login/',
+    'registration' => '/session/registration/',
+    'page_create' => '/wiki/create/',
+    'page_edit' => '/wiki/edit/',
+    'page_save' => '/wiki/save/',
+    'page_delete' => '/wiki/delete/',
+    'page_view' => '/wiki/view/'
 );

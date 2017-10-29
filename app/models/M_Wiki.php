@@ -4,6 +4,7 @@ class M_Wiki extends Model{
 
     const LINK_PREFIX = '/wiki/view/?id=';
     const MAIN_CATEGORY_ID = -1;
+    const HIDE_CATEGORY_ID = -2;
     const DEFAULT_CATEGORY_NAME = 'Без категории';
 
     public $id;
@@ -22,6 +23,9 @@ class M_Wiki extends Model{
         $data['name'] = $page->db_name;
         $data['text'] = $page->db_content;
         $data['text_replace'] = str_replace(chr(13), '<br>', $page->db_content);
+
+        $data['category_id'] = $page->db_category_id;
+        $data['level_up_text'] = 'На уровень вверх';
 
         $lastChangePerson = ORM_Person::load_by_id($page->db_last_change_user_id);
         $data['last_change'] = 'Последние изменение:<br>' . $page->db_last_change . ', ' . $lastChangePerson->db_login;
@@ -129,6 +133,7 @@ class M_Wiki extends Model{
 
         $category_id = M_Wiki::MAIN_CATEGORY_ID;
         if ($resultFilter === true) $category_id = $categoryFilter->db_id;
+        if ($page_id == 0) $category_id = M_Wiki::HIDE_CATEGORY_ID;
 
         $last_change = date($this->getDateFormat());
         $last_change_user_id = $person->db_id;
@@ -142,6 +147,50 @@ class M_Wiki extends Model{
         $changingPage->save();
 
         return true;
+    }
+
+    public function delete($page_id, $login){
+        $person = new ORM_Person();
+        $person->db_login = $login;
+        $person->load();
+
+        $role = new ORM_Role();
+        $role->db_id = $person->db_role_id;
+        $role->load();
+
+        if (!$role->db_delete_pages){
+            $result['id'] = $page_id;
+            $result['error'] = M_Error::_ERROR_NOT_PERMISSION;
+            return $result;
+        }
+
+        $page = ORM_Page::load_by_id($page_id);
+        if ($page === false){
+            $result['id'] = $page_id;
+            $result['error'] = M_Error::_ERROR_FIELD_EMPTY;
+            return $result;
+        }
+
+        if ($page_id == 0){
+            $result['id'] = $page_id;
+            $result['error'] = M_Error::_ERROR_NOT_PERMISSION;
+            return $result;
+        }
+
+        $subcategoriesFilter = new ORM_Page();
+        $subcategoriesFilter->db_category_id = $page_id;
+        if ($subcategoriesFilter->load()){
+            $result['id'] = $page_id;
+            $result['error'] = M_Error::_ERROR_DELETE_SUBCATEGORIS;
+            return $result;
+        }
+
+        $result['id'] = $page->db_category_id;
+        if ($result['id'] < 0) $result['id'] = 0;
+        $result['error'] = true;
+
+        $page->delete();
+        return $result;
     }
 
     private function getDateFormat(){

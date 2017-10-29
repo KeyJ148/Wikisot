@@ -2,7 +2,7 @@
 
 class V_ContentWikiEdit extends View {
 
-    public $text, $name, $category, $all_categories, $id;
+    public $text, $name, $category, $all_categories, $id, $display_select;
 
     public function display(){
         ?>
@@ -12,6 +12,8 @@ class V_ContentWikiEdit extends View {
             <ul>
                 <input form="save" type="hidden" name="id" value="<?= $this->id?>">
                 <input form="save" class="text" type="text" name="name" value="<?= $this->name ?>">
+
+                <?php if ($this->display_select){ ?>
                 <select form="save" class="button" name="category">
                     <option><?= $this->category ?></option>
 
@@ -26,10 +28,12 @@ class V_ContentWikiEdit extends View {
                         echo '<option>' . M_Wiki::DEFAULT_CATEGORY_NAME . '</option>';
                     }
                     ?>
-        </select>
-        <br><br>
-        <textarea form="save" type="text" name="content" cols="80" rows="40" style="resize:vertical;"><?= $this->text?></textarea>
-        </ul>
+                </select>
+                <?php } ?>
+
+                <br><br>
+                <textarea form="save" type="text" name="content" cols="80" rows="40" style="resize:vertical;"><?= $this->text?></textarea>
+            </ul>
         </div>
 
 

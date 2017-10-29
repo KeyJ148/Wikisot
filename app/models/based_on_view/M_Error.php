@@ -12,6 +12,7 @@ class M_Error extends Model {
     const _ERROR_LOGIN_BUSY = 7;
     const _ERROR_LOGIN_SMALL = 8;
     const _ERROR_PASSWORD_SMALL = 9;
+    const _ERROR_DELETE_SUBCATEGORIS = 10;
 
     private $error;
 
@@ -27,6 +28,7 @@ class M_Error extends Model {
             case M_Error::_ERROR_LOGIN_BUSY: return "логин занят";
             case M_Error::_ERROR_LOGIN_SMALL: return "логин должен быть длиннее 3 символов";
             case M_Error::_ERROR_PASSWORD_SMALL: return "пароль должен быть длиннее 6 символов";
+            case M_Error::_ERROR_DELETE_SUBCATEGORIS: return "в начале удалите все подкатегории";
         }
     }
 

@@ -4,9 +4,14 @@ class V_Head extends View{
 
     public $title = 'Storm of time';
     public $css = '';
+    public $js = '';
 
     public function addCSS($url){
         $this->css .= '<link rel="stylesheet" type="text/css" href="' . $url . '" />' . "\n";
+    }
+
+    public function addJS($url){
+        $this->js .= '<script src="' . $url . '"></script>' . "\n";
     }
 
     public function display(){
@@ -23,7 +28,9 @@ class V_Head extends View{
         <link rel="stylesheet" type="text/css" href="<?=CSS_URL?>page/head.css" />
         <link rel="stylesheet" type="text/css" href="<?=CSS_URL?>page/content.css" />
         <link rel="stylesheet" type="text/css" href="<?=CSS_URL?>page/bottom.css" />
+
         <?=$this->css?>
+        <?=$this->js?>
 
         <?php
     }

@@ -52,6 +52,25 @@ input.mini-button {
     width: 260px;
 }
 
+input.mini-button-2 {
+    width: 127px;
+}
+
 input.mini-text {
     width: 240px;
+}
+
+input.red-button{
+    background: #F2EBDE;
+    border: solid 1px #BFB5A4;
+    box-shadow: inset 0px 0px 0px 1px #fff;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.9);
+}
+
+input.red-button:hover{
+    background-color: #C2AB9E;
+}
+
+input.red-button:active {
+    background-color: #A28B8E;
 }

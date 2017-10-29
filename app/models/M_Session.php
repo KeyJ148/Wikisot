@@ -29,8 +29,16 @@ class M_Session extends Model {
     //Попытка зарегистрироваться с указанным логином и паролем
     //Возвращает true, если успешно, в противном случае случае возвращает номер ошибки
     public function registration($login, $pass){
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
+
         if (strlen($login) < 3) return M_Error::_ERROR_LOGIN_SMALL;
         if (strlen($pass) < 6) return M_Error::_ERROR_PASSWORD_SMALL;
+        if (strlen($login) > 25) return M_Error::_ERROR_LOGIN_LARGE;
+        if (strlen($pass) > 50) return M_Error::_ERROR_PASSWORD_LARGE;
+
+        for ($i=0; $i<strlen($login); $i++){
+            if (strpbrk($login[$i], $chars) === false) return M_Error::_ERROR_LOGIN_SPEC_CHARS;
+        }
 
         $sault = M_Session::getSault();
         $hash = hash('SHA256', $pass . $sault);

@@ -13,6 +13,9 @@ class M_Error extends Model {
     const _ERROR_LOGIN_SMALL = 8;
     const _ERROR_PASSWORD_SMALL = 9;
     const _ERROR_DELETE_SUBCATEGORIS = 10;
+    const _ERROR_LOGIN_LARGE = 11;
+    const _ERROR_PASSWORD_LARGE = 12;
+    const _ERROR_LOGIN_SPEC_CHARS = 13;
 
     private $error;
 
@@ -29,6 +32,9 @@ class M_Error extends Model {
             case M_Error::_ERROR_LOGIN_SMALL: return "логин должен быть длиннее 3 символов";
             case M_Error::_ERROR_PASSWORD_SMALL: return "пароль должен быть длиннее 6 символов";
             case M_Error::_ERROR_DELETE_SUBCATEGORIS: return "в начале удалите все подкатегории";
+            case M_Error::_ERROR_LOGIN_LARGE: return "логин должен быть короче 25 символов";
+            case M_Error::_ERROR_PASSWORD_LARGE: return "пароль должен быть короче 50 символов";
+            case M_Error::_ERROR_LOGIN_SPEC_CHARS: return "логин должен состоять из латинских букв, цифр и знака подчеркивания";
         }
     }
 

@@ -132,7 +132,7 @@ class C_Wiki extends DefaultPageController {
         $content = $_POST['content'];
         $category_name = $_POST['category'];
 
-        if (!isset($page_id) || !$name || !$category_name){
+        if (!isset($page_id) || !$name || (!$category_name && $page_id != 0)){
             $this->redirect(M_Error::_ERROR_FIELD_EMPTY, $page_id);
             return;
         }

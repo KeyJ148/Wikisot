@@ -7,10 +7,11 @@ class M_Wiki extends Model{
     const HIDE_CATEGORY_ID = -2;
     const DEFAULT_CATEGORY_NAME = 'Без категории';
 
-    public $id;
+    public $id, $login;
 
-    public function __construct($id){
+    public function __construct($id, $login = null){
         $this->id = $id;
+        $this->login = $login;
     }
 
     public function getData(){
@@ -32,6 +33,19 @@ class M_Wiki extends Model{
 
         $data['title_list'] = 'Страницы в этой категории';
         $data['content_list'] = array();
+
+        $data['have_edit_perm'] = false;
+        if ($this->login != null) {
+            $person = new ORM_Person();
+            $person->db_login = $this->login;
+            $person->load();
+
+            $role = new ORM_Role();
+            $role->db_id = $person->db_role_id;
+            $role->load();
+
+            $data['have_edit_perm'] = $role->db_change_pages;
+        }
 
         $subcategoriesFilter = new ORM_Page();
         $subcategoriesFilter->db_category_id = $page->db_id;

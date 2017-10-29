@@ -10,8 +10,9 @@ class C_Wiki extends DefaultPageController {
     function action_view() {
         if (!isset($_GET['id'])) $_GET['id'] = 0;
         if (!ORM_Page::load_by_id($_GET['id'])) $_GET['id'] = 0;
+        if (!isset($_SESSION['login'])) $_SESSION['login'] = null;
 
-        $data = (new M_Wiki($_GET['id']))->getData();
+        $data = (new M_Wiki($_GET['id'], $_SESSION['login']))->getData();
         $this->title = $data['title'];
         $this->content = array();
         $this->content_description = $data['content_description'];
@@ -40,8 +41,11 @@ class C_Wiki extends DefaultPageController {
             $levelUpButton->form_path = FORMS_PATH['page_view'];
         }
 
-        $wikiOptions = new V_WikiOptions();
-        $wikiOptions->id = $data['id'];
+        $wikiOptions = new V_Empty();
+        if ($data['have_edit_perm']){
+            $wikiOptions = new V_WikiOptions();
+            $wikiOptions->id = $data['id'];
+        }
 
         $lastChangeText = new V_Text();
         $lastChangeText->text = $data['last_change'];

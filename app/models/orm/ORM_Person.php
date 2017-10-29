@@ -9,5 +9,6 @@ class ORM_Person {
     public $db_sault;
     public $db_role_id;
     public $db_token;
+    public $db_token_api;
 
 }
